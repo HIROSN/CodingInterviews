@@ -12,13 +12,13 @@ using namespace std;
 //
 //------------------------------------------------------------------------------
 template<class Object>
-void quicksort(Object numbers[], int start, int end);
+void quicksort(Object objects[], int start, int end);
 
 template<class Object>
-void median3(Object numbers[], int start, int end);
+void median3(Object objects[], int start, int end);
 
 template<class Object>
-int partition(Object numbers[], int start, int end);
+int partition(Object objects[], int start, int end);
 
 
 //------------------------------------------------------------------------------
@@ -27,54 +27,54 @@ int partition(Object numbers[], int start, int end);
 //
 //------------------------------------------------------------------------------
 template<class Object>
-void quicksort(Object numbers[], int start, int end)
+void quicksort(Object objects[], int start, int end)
 {
     if (start < end)
     {
-        int pivot = partition(numbers, start, end);
-        quicksort(numbers, start, pivot - 1);
-        quicksort(numbers, pivot + 1, end);
+        int pivot = partition(objects, start, end);
+        quicksort(objects, start, pivot - 1);
+        quicksort(objects, pivot + 1, end);
     }
 }
 
 
 template<class Object>
-void median3(Object numbers[], int start, int end)
+void median3(Object objects[], int start, int end)
 {
     int center = (start + end) / 2;
 
-    if (numbers[start] > numbers[center])
+    if (objects[start] > objects[center])
     {
-        swap(numbers[start], numbers[center]);
+        swap(objects[start], objects[center]);
     }
 
-    if (numbers[start] > numbers[end])
+    if (objects[start] > objects[end])
     {
-        swap(numbers[start], numbers[end]);
+        swap(objects[start], objects[end]);
     }
 
     // Place pivot at the end.
-    if (numbers[end] > numbers[center])
+    if (objects[end] > objects[center])
     {
-        swap(numbers[end], numbers[center]);
+        swap(objects[end], objects[center]);
     }
 }
 
 
 template<class Object>
-int partition(Object numbers[], int start, int end)
+int partition(Object objects[], int start, int end)
 {
     int indexPivot = start;
-    median3(numbers, start, end);
+    median3(objects, start, end);
 
     for (int i = start; i <= end; i++)
     {
         // Pivot is at the end.
-        if (numbers[i] < numbers[end])
+        if (objects[i] < objects[end])
         {
             if (i != indexPivot)
             {
-                swap(numbers[indexPivot], numbers[i]);
+                swap(objects[indexPivot], objects[i]);
             }
 
             ++indexPivot;
@@ -84,7 +84,7 @@ int partition(Object numbers[], int start, int end)
     if (indexPivot != end)
     {
         // Restore pivot.
-        swap(numbers[indexPivot], numbers[end]);
+        swap(objects[indexPivot], objects[end]);
     }
 
     return indexPivot;
