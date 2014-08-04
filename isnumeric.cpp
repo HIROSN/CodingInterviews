@@ -12,6 +12,8 @@ using namespace std;
 //
 //------------------------------------------------------------------------------
 
+// [sign]integral-digits[.]|[integral-digits].fractional-digits[e|E[sign]exponential-digits]
+
 
 //------------------------------------------------------------------------------
 //
