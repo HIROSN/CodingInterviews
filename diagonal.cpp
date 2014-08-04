@@ -21,22 +21,23 @@ using namespace std;
 //  Implementation
 //
 //------------------------------------------------------------------------------
+template<class Object>
 bool find(
-    vector<vector<int>> matrix,
-    int value,
+    vector<vector<Object>> matrix,
+    Object object,
     int row1,
     int col1,
     int row2,
     int col2)
 {
-    if (value < matrix[row1][col1] ||
-        value > matrix[row2][col2])
+    if (object < matrix[row1][col1] ||
+        object > matrix[row2][col2])
     {
         return false;
     }
 
-    if (value == matrix[row1][col1] ||
-        value == matrix[row2][col2])
+    if (object == matrix[row1][col1] ||
+        object == matrix[row2][col2])
     {
         return true;
     }
@@ -53,12 +54,12 @@ bool find(
         (row1 != midRow || col1 != midCol) &&
         (row2 != midRow || col2 != midCol))
     {
-        if (value == matrix[midRow][midCol])
+        if (object == matrix[midRow][midCol])
         {
             return true;
         }
 
-        if (value < matrix[midRow][midCol])
+        if (object < matrix[midRow][midCol])
         {
             row2 = midRow;
             col2 = midCol;
@@ -75,7 +76,7 @@ bool find(
 
     if (midRow < static_cast<int>(matrix.size() - 1))
     {
-        if (find(matrix, value, midRow + 1, c_col1, c_row2, midCol))
+        if (find(matrix, object, midRow + 1, c_col1, c_row2, midCol))
         {
             return true;
         }
@@ -83,7 +84,7 @@ bool find(
 
     if (midCol < static_cast<int>(matrix[0].size() - 1))
     {
-        if (find(matrix, value, c_row1, midCol + 1, midRow, c_col2))
+        if (find(matrix, object, c_row1, midCol + 1, midRow, c_col2))
         {
             return true;
         }
