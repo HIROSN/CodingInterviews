@@ -39,9 +39,7 @@ CMyString& CMyString::operator=(const CMyString& str)
     if (&str != this)
     {
         CMyString temp(str);
-        char* pTemp = temp.m_pData;
-        temp.m_pData = m_pData;
-        m_pData = pTemp;
+        swap(m_pData, temp.m_pData);
     }
 
     return *this;
@@ -58,28 +56,24 @@ CMyString::CMyString(char* pData)
 {
     if (pData != nullptr)
     {
-        m_pData = new char[strlen(pData) + 1];
+        size_t cch = strlen(pData) + 1;
+        m_pData = new char[cch];
 
         if (m_pData != nullptr)
         {
-            strcpy(m_pData, pData);
+            if (strcpy_s(m_pData, cch, pData) != 0)
+            {
+                delete[] m_pData;
+                m_pData = nullptr;
+            }
         }
     }
 }
 
 
 CMyString::CMyString(const CMyString& str)
-    : m_pData(nullptr)
+    : CMyString(str.m_pData)
 {
-    if (str.m_pData != nullptr)
-    {
-        m_pData = new char[strlen(str.m_pData) + 1];
-
-        if (m_pData != nullptr)
-        {
-            strcpy(m_pData, str.m_pData);
-        }
-    }
 }
 
 
