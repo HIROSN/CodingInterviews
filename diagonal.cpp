@@ -156,5 +156,5 @@ int _tmain(int argc, _TCHAR* argv[])
         cout << value << " is" << (found ? "" : " not") << " found." << endl;
     }
 
-	return 0;
+    return 0;
 }

@@ -133,5 +133,5 @@ int _tmain(int argc, _TCHAR* argv[])
         cout << "\" is" << (result ? "" : " not") << " numeric" << endl;
     }
 
-	return 0;
+    return 0;
 }

@@ -111,5 +111,5 @@ int _tmain(int argc, _TCHAR* argv[])
     str = someString;
     cout << "\"" << str.c_str() << "\"" << endl;
 
-	return 0;
+    return 0;
 }

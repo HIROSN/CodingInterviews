@@ -9,7 +9,7 @@ using namespace std;
 //------------------------------------------------------------------------------
 //
 //  How do you implement a function to match regular expressions with '.' and
-//  '*' in patters?
+//  '*' in patterns?
 //
 //------------------------------------------------------------------------------
 
@@ -107,5 +107,5 @@ int _tmain(int argc, _TCHAR* argv[])
         cout << "\"" << endl;
     }
 
-	return 0;
+    return 0;
 }

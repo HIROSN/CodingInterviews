@@ -167,5 +167,5 @@ int _tmain(int argc, _TCHAR* argv[])
     cout << ARRAYSIZE(tests) - countFailed << " passed, ";
     cout << countFailed << " failed." << endl;
 
-	return 0;
+    return 0;
 }
