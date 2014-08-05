@@ -12,11 +12,17 @@ using namespace std;
 //
 //            [10]
 //           /    \
-//        [6]      [14]
+//        [4]      [16]
 //        / \      /  \
-//      [4] [8]  [12] [16]
+//      [2] [8]  [12] [18]
+//          /      \     \
+//        [6]      [14]  [20]
+//                          \
+//                          [24]
+//                          /
+//                       [22]
 //
-//  Post-order traversal sequence is 4, 8, 6, 12, 16, 14, 10
+//  Post-order traversal sequence is 2, 6, 8, 4, 14, 12, 22, 24, 20, 18, 16, 10
 //
 //------------------------------------------------------------------------------
 template<class Object>
@@ -54,14 +60,17 @@ BinaryTreeNode<Object>* BinaryTreeNode<Object>::GetNext()
         return nullptr;
     }
 
-    BinaryTreeNode<Object>* pNext = m_pParent->m_pRight;
-
-    if (nullptr == pNext || this == pNext)
+    if (m_pParent->m_pRight == this)
     {
-        pNext = m_pParent;
+        return m_pParent;
     }
-    else
+
+    BinaryTreeNode<Object>* pNext = m_pParent;
+
+    while (pNext->m_pRight != nullptr)
     {
+        pNext = pNext->m_pRight;
+
         while (pNext->m_pLeft != nullptr)
         {
             pNext = pNext->m_pLeft;
@@ -152,12 +161,17 @@ BinaryTreeNode<Object>* BinaryTreeNode<Object>::GetFirst()
 int _tmain(int argc, _TCHAR* argv[])
 {
     BinaryTreeNode<int> root(10);
-    root.Add(6);
     root.Add(4);
+    root.Add(2);
     root.Add(8);
-    root.Add(14);
-    root.Add(12);
+    root.Add(6);
     root.Add(16);
+    root.Add(12);
+    root.Add(18);
+    root.Add(14);
+    root.Add(20);
+    root.Add(24);
+    root.Add(22);
     BinaryTreeNode<int>* pNode = root.GetFirst();
 
     while (pNode != nullptr)

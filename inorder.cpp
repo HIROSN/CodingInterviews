@@ -12,11 +12,17 @@ using namespace std;
 //
 //            [10]
 //           /    \
-//        [6]      [14]
+//        [4]      [16]
 //        / \      /  \
-//      [4] [8]  [12] [16]
+//      [2] [8]  [12] [18]
+//          /      \     \
+//        [6]      [14]  [20]
+//                          \
+//                          [24]
+//                          /
+//                       [22]
 //
-//  In-order traversal sequence is 4, 6, 8, 10, 12, 14, 16
+//  In-order traversal sequence is 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24
 //
 //------------------------------------------------------------------------------
 template<class Object>
@@ -156,12 +162,17 @@ BinaryTreeNode<Object>* BinaryTreeNode<Object>::GetFirst()
 int _tmain(int argc, _TCHAR* argv[])
 {
     BinaryTreeNode<int> root(10);
-    root.Add(6);
     root.Add(4);
+    root.Add(2);
     root.Add(8);
-    root.Add(14);
-    root.Add(12);
+    root.Add(6);
     root.Add(16);
+    root.Add(12);
+    root.Add(18);
+    root.Add(14);
+    root.Add(20);
+    root.Add(24);
+    root.Add(22);
     BinaryTreeNode<int>* pNode = root.GetFirst();
 
     while (pNode != nullptr)
