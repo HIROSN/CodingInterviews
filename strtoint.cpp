@@ -31,6 +31,11 @@ int StrToInt(const char* pszString)
 
     length = strlen(pszString);
 
+    if (0 == length)
+    {
+        throw exception();
+    }
+
     for (int i = 0; i < length; i++)
     {
         switch (pszString[i])
@@ -108,7 +113,7 @@ int _tmain(int argc, _TCHAR* argv[])
     const TestCase tests[] =
     {
         { nullptr,          0,              true },
-        { "",               0,              false },
+        { "",               0,              true },
         { "12345",          12345,          false },
         { "+12345",         12345,          false },
         { "3.14",           0,              true },
