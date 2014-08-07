@@ -42,7 +42,10 @@ bool match(char* pString, char* pPattern)
             }
 
             // Move onto the next pattern.
-            return match(pString + 1, pPattern + 2);
+            if (match(pString + 1, pPattern + 2))
+            {
+                return true;
+            }
         }
 
         // Not a match. Ignore the '*'.
@@ -80,6 +83,7 @@ int _tmain(int argc, _TCHAR* argv[])
         { "aaa",        "aa.a",     false },
         { "aaa",        "ab*a",     false },
         { "aaa",        ".*b*",     true },
+        { "ac",         "a.*c",     true },
         { "aaab",       "a*b*",     true },
         { "aaabbb",     "...b*",    true },
         { "aaa",        ".",        false },
