@@ -29,29 +29,22 @@ void WordsInReverseOrder(char* pString, int cch)
         return;
     }
 
-    char* const pCopy = pString;
-    char* pStart = pString;
+    int indexWord = 0;
     stack<string> words;
+    string copy(pString);
     string reversed;
 
-    while (*pString != '\0')
+    for (int i = 0; i < lstrlenA(pString) + 1; i++)
     {
-        if (' ' == *pString)
+        if (isspace(pString[i]) || '\0' == pString[i])
         {
-            if (pString > pStart)
+            if (i > indexWord)
             {
-                words.push(string(pStart).substr(0, pString - pStart));
+                words.push(copy.substr(indexWord, i - indexWord));
             }
 
-            pStart = pString + 1;
+            indexWord = i + 1;
         }
-
-        ++pString;
-    }
-
-    if (pString > pStart)
-    {
-        words.push(string(pStart).substr(0, pString - pStart));
     }
 
     while (!words.empty())
@@ -65,7 +58,7 @@ void WordsInReverseOrder(char* pString, int cch)
         words.pop();
     }
 
-    StringCchCopyA(pCopy, cch, reversed.c_str());
+    StringCchCopyA(pString, cch, reversed.c_str());
 }
 
 
