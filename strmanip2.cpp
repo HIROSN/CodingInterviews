@@ -22,19 +22,19 @@ using namespace std;
 //  Implementation
 //
 //------------------------------------------------------------------------------
-void WordsInReverseOrder(char* pString, int cch)
+void WordsInReverseOrder(char* pString, size_t cch)
 {
     if (nullptr == pString)
     {
         return;
     }
 
-    int indexWord = 0;
+    size_t indexWord = 0;
     stack<string> words;
     string copy(pString);
     string reversed;
 
-    for (int i = 0; i < lstrlenA(pString) + 1; i++)
+    for (size_t i = 0; i < strlen(pString) + 1; i++)
     {
         if (isspace(pString[i]) || '\0' == pString[i])
         {
