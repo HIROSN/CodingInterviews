@@ -53,7 +53,8 @@ private:
     static const char c_combinators[];
 };
 
-const char Token::c_combinators[] = { ' ', '+', '>' };
+// Non-space combinators.
+const char Token::c_combinators[] = { '+', '>' };
 
 
 queue<Token> Token::Parser(char* pString)
@@ -71,12 +72,20 @@ queue<Token> Token::Parser(char* pString)
     {
         char combinator = '\0';
 
-        for (int j = 0; j < ARRAYSIZE(c_combinators); j++)
+        if (isspace(pString[i]))
         {
-            if (c_combinators[j] == pString[i])
+            // Space is a combinator.
+            combinator = pString[i];
+        }
+        else
+        {
+            for (int j = 0; j < ARRAYSIZE(c_combinators); j++)
             {
-                combinator = c_combinators[j];
-                break;
+                if (c_combinators[j] == pString[i])
+                {
+                    combinator = pString[i];
+                    break;
+                }
             }
         }
 
@@ -90,9 +99,9 @@ queue<Token> Token::Parser(char* pString)
 
             indexToken = i + 1;
 
-            if (combinator != '\0')
+            if (stack1.empty())
             {
-                if (stack1.empty())
+                if (combinator != '\0')
                 {
                     if (isspace(combinator))
                     {
@@ -103,28 +112,38 @@ queue<Token> Token::Parser(char* pString)
                     throw exception("Starts with a combinator.");
                 }
 
-                if (isspace(combinator))
+                continue;
+            }
+
+            if (stack1.top().IsCombinator())
+            {
+                if (combinator != '\0' && isspace(combinator))
                 {
-                    if (stack1.top().IsCombinator())
-                    {
-                        // Ignore extra space.
-                        continue;
-                    }
-                }
-                else if (stack1.top().IsCombinator())
-                {
-                    if (isspace(stack1.top().GetCombinator()))
-                    {
-                        // Remove space before non-space combinator.
-                        stack1.pop();
-                    }
-                    else
-                    {
-                        throw exception("Found more than one combinator.");
-                    }
+                    // Ignore extra space.
+                    continue;
                 }
 
-                stack1.push(Token(combinator));
+                if (isspace(stack1.top().GetCombinator()))
+                {
+                    // Remove trailing space or space before another combinator.
+                    stack1.pop();
+                }
+                else
+                {
+                    throw exception("Found more than one combinator.");
+                }
+            }
+
+            if (combinator != '\0')
+            {
+                if (pString[i + 1] != '\0')
+                {
+                    stack1.push(Token(combinator));
+                }
+                else
+                {
+                    throw exception("Ends with a combinator.");
+                }
             }
 
             continue;
@@ -134,19 +153,6 @@ queue<Token> Token::Parser(char* pString)
             (pString[i] < 'A' || pString[i] > 'Z'))
         {
             throw exception("Non-alpha character in tag name.");
-        }
-    }
-
-    if (!stack1.empty() && stack1.top().IsCombinator())
-    {
-        if (isspace(stack1.top().GetCombinator()))
-        {
-            // Remove trailing space.
-            stack1.pop();
-        }
-        else
-        {
-            throw exception("Ends with a combinator.");
         }
     }
 
