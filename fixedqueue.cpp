@@ -45,6 +45,11 @@ FixedQueue<Object>::FixedQueue(unsigned int size)
     {
         m_pObject = new Object[m_size];
     }
+
+    if (nullptr == m_pObject)
+    {
+        throw exception();
+    }
 }
 
 
