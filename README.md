@@ -1,5 +1,6 @@
-Building in Visual Studio
-=========================
+# Coding Interview Questions
+
+## Building in Visual Studio
 
 - Create a new VC++ Win32 console app project
 - Uncheck Precompiled header
