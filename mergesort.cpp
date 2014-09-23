@@ -19,17 +19,16 @@ using namespace std;
 //
 //------------------------------------------------------------------------------
 template<class Object>
-void mergesort(Object objects[], int start, int end)
+void mergesort(Object objects[], Object* pCopy, int start, int end)
 {
-    if (start >= end)
+    if (nullptr == pCopy || start >= end)
     {
         return;
     }
 
     int center = (start + end) / 2;
-    mergesort(objects, start, center);
-    mergesort(objects, center + 1, end);
-    Object* pCopy = new Object[end + 1];
+    mergesort(objects, pCopy, start, center);
+    mergesort(objects, pCopy, center + 1, end);
 
     for (int i = start; i <= end; i++)
     {
@@ -56,8 +55,18 @@ void mergesort(Object objects[], int start, int end)
     {
         objects[index++] = pCopy[i];
     }
+}
 
-    delete[] pCopy;
+
+template<class Object>
+void mergesort(Object objects[], int length)
+{
+    if (length > 0)
+    {
+        Object* pCopy = new Object[length];
+        mergesort(objects, pCopy, 0, length - 1);
+        delete[] pCopy;
+    }
 }
 
 
@@ -69,7 +78,7 @@ void mergesort(Object objects[], int start, int end)
 int _tmain(int argc, _TCHAR* argv[])
 {
     int numbers[] = { 13, 81, 92, 43, 65, 31, 57, 26, 75, 0 };
-    mergesort(numbers, 0, ARRAYSIZE(numbers) - 1);
+    mergesort(numbers, ARRAYSIZE(numbers));
 
     for (int i = 0; i < ARRAYSIZE(numbers); i++)
     {
