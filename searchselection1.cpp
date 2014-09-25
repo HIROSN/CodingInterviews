@@ -13,16 +13,6 @@ using namespace std;
 //  value of the entry that appears only once.
 //
 //------------------------------------------------------------------------------
-class TreeNode
-{
-public:
-    int m_value;
-    TreeNode* m_pLeft;
-    TreeNode* m_pRight;
-
-    TreeNode(int value)
-        : m_value(value), m_pLeft(nullptr), m_pRight(nullptr) {}
-};
 
 
 //------------------------------------------------------------------------------
@@ -30,125 +20,138 @@ public:
 //  Implementation
 //
 //------------------------------------------------------------------------------
-void insertOrRemove(int value, TreeNode*& pNode);
-void remove(int value, TreeNode*& pNode);
-int findMin(TreeNode* pNode);
-int cleanup(TreeNode*& pNode);
-
-
-int findValueAppearsOnce(int array[], int length)
+template<class Object>
+class BinarySearchTree
 {
-    int valueAppearsOnce = -1;
-    TreeNode* pNode = nullptr;
+public:
+    BinarySearchTree() : m_pRoot(nullptr) {}
+    ~BinarySearchTree() { Cleanup(m_pRoot); }
 
-    for (int i = 0; i < length; i++)
-    {
-        insertOrRemove(array[i], pNode);
-    }
+    bool Insert(const Object& object) { return Insert(object, m_pRoot); }
+    void Remove(const Object& object) { Remove(object, m_pRoot); }
 
-    if (pNode != nullptr)
+    Object GetRoot()
     {
-        valueAppearsOnce = pNode->m_value;
-    }
-
-    if (cleanup(pNode) != 1)
-    {
-        valueAppearsOnce = -1;
+        return (m_pRoot != nullptr) ? m_pRoot->m_object : Object();
     }
 
-    return valueAppearsOnce;
-}
+private:
+    template<class Object>
+    struct TreeNode
+    {
+        Object m_object;
+        TreeNode<Object>* m_pLeft;
+        TreeNode<Object>* m_pRight;
 
+        TreeNode(const Object& object)
+            : m_object(object), m_pLeft(nullptr), m_pRight(nullptr) {}
+    };
 
-void insertOrRemove(int value, TreeNode*& pNode)
-{
-    if (nullptr == pNode)
-    {
-        pNode = new TreeNode(value);
-    }
-    else if (value < pNode->m_value)
-    {
-        insertOrRemove(value, pNode->m_pLeft);
-    }
-    else if (value > pNode->m_value)
-    {
-        insertOrRemove(value, pNode->m_pRight);
-    }
-    else
-    {
-        remove(value, pNode);
-    }
-}
+private:
+    TreeNode<Object>* m_pRoot;
 
-
-void remove(int value, TreeNode*& pNode)
-{
-    if (nullptr == pNode)
+private:
+    bool Insert(const Object& object, TreeNode<Object>*& pNode)
     {
-        return;
-    }
-
-    if (value < pNode->m_value)
-    {
-        remove(value, pNode->m_pLeft);
-    }
-    else if (value > pNode->m_value)
-    {
-        remove(value, pNode->m_pRight);
-    }
-    else if (pNode->m_pLeft != nullptr && pNode->m_pRight != nullptr)
-    {
-        pNode->m_value = findMin(pNode->m_pRight);
-        remove(pNode->m_value, pNode->m_pRight);
-    }
-    else
-    {
-        TreeNode* pDelete = pNode;
-
-        if (pNode->m_pLeft != nullptr)
+        if (nullptr == pNode)
         {
-            pNode = pNode->m_pLeft;
+            pNode = new TreeNode<Object>(object);
+            return true;
+        }
+
+        if (object < pNode->m_object)
+        {
+            return Insert(object, pNode->m_pLeft);
+        }
+
+        if (object > pNode->m_object)
+        {
+            return Insert(object, pNode->m_pRight);
+        }
+
+        return false;
+    }
+
+    void Remove(const Object& object, TreeNode<Object>*& pNode)
+    {
+        if (nullptr == pNode)
+        {
+            return;
+        }
+
+        if (object < pNode->m_object)
+        {
+            Remove(object, pNode->m_pLeft);
+        }
+        else if (object > pNode->m_object)
+        {
+            Remove(object, pNode->m_pRight);
+        }
+        else if (pNode->m_pLeft != nullptr && pNode->m_pRight != nullptr)
+        {
+            pNode->m_object = GetMinimum(pNode->m_pRight);
+            Remove(pNode->m_object, pNode->m_pRight);
         }
         else
         {
-            pNode = pNode->m_pRight;
+            TreeNode<Object>* pDelete = pNode;
+
+            if (pNode->m_pLeft != nullptr)
+            {
+                pNode = pNode->m_pLeft;
+            }
+            else
+            {
+                pNode = pNode->m_pRight;
+            }
+
+            delete pDelete;
+        }
+    }
+
+    Object GetMinimum(TreeNode<Object>*& pNode)
+    {
+        if (nullptr == pNode)
+        {
+            return Object();
         }
 
-        delete pDelete;
-    }
-}
+        if (pNode->m_pLeft != nullptr)
+        {
+            return GetMinimum(pNode->m_pLeft);
+        }
 
-
-int findMin(TreeNode* pNode)
-{
-    if (nullptr == pNode)
-    {
-        return -1;
+        return pNode->m_object;
     }
 
-    if (pNode->m_pLeft != nullptr)
+    void Cleanup(TreeNode<Object>*& pNode)
     {
-        return findMin(pNode->m_pLeft);
-    }
+        if (nullptr == pNode)
+        {
+            return;
+        }
 
-    return pNode->m_value;
-}
-
-
-int cleanup(TreeNode*& pNode)
-{
-    int count = 0;
-
-    if (pNode != nullptr)
-    {
-        count += cleanup(pNode->m_pLeft);
-        count += cleanup(pNode->m_pRight);
+        Cleanup(pNode->m_pLeft);
+        Cleanup(pNode->m_pRight);
         delete pNode;
         pNode = nullptr;
-        ++count;
+    }
+};
+
+
+int FindValueAppearsOnce(int array[], int length)
+{
+    BinarySearchTree<int> bst;
+
+    for (int i = 0; i < length; i++)
+    {
+        if (!bst.Insert(array[i]))
+        {
+            bst.Remove(array[i]);
+        }
     }
 
-    return count;
+    return bst.GetRoot();
 }
 
 
@@ -160,6 +163,6 @@ int cleanup(TreeNode*& pNode)
 int _tmain(int argc, _TCHAR* argv[])
 {
     int array[] = { 4, 1, 2, 3, 5, 6, 7, 4, 1, 2, /*3,*/ 5, 6, 7 };
-    cout << findValueAppearsOnce(array, ARRAYSIZE(array)) << endl;
+    cout << FindValueAppearsOnce(array, ARRAYSIZE(array)) << endl;
     return 0;
 }
