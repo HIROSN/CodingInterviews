@@ -8,7 +8,8 @@ using namespace std;
 
 //------------------------------------------------------------------------------
 //
-//  
+//  An array of digits represents a positive number, for example {1, 2, 3}
+//  represents 123. Write a program to increment the number.
 //
 //------------------------------------------------------------------------------
 
@@ -18,61 +19,80 @@ using namespace std;
 //  Implementation
 //
 //------------------------------------------------------------------------------
-/*
-example: {1,2,3} represents 123 
-{1,2,3} -> {1,2,4}
-{3,4} -> {3,5}
-{9} -> {1,0}
-{-1,2,-3}
-{999,4,5}
-{1,2,MAXINT}
-nullptr
-size = -1
-size = 0
-size = MAXINT
-
-void increment(int*& array, int size) {
+void increment(int*& array, int& size)
+{
     if (nullptr == array || size <= 0)
-        throw std::exception();
+    {
+        throw exception();
+    }
 
     bool increment = true;
     
-    for (int i = size - 1; increment && i >= 0; i--) {
+    for (int i = size - 1; increment && i >= 0; i--)
+    {
         if (array[i] < 0 || array[i] >= 10)
-            throw std::exception();
+        {
+            throw exception();
+        }
             
-        if (++array[i] >= 10) {
+        if (++array[i] >= 10)
+        {
             array[i] = 0;
         }
-        else {
+        else
+        {
             increment = false;
         }
     }
     
-    if (increment) {
+    if (increment)
+    {
         if (size > MAXINT - 1)
-            throw std::exception();
-            
-        ++size;
-        int* newArray = new int[size];
-        newArray[0] = 1;
-        for (int i = 1; i < size; i++) {
-            newArray[i] = array[i - 1];
+        {
+            throw exception();
         }
+            
+        int* newArray = new int[size + 1];
+
+        if (nullptr == newArray)
+        {
+            throw exception();
+        }
+
+        newArray[0] = 1;
+        CopyMemory(&newArray[1], &array[0], sizeof(int) * size++);
         delete [] array;
         array = newArray;
     }
 }
-*/
 
 
 //------------------------------------------------------------------------------
 //
-//  Unit tests
+//  Demo execution
 //
 //------------------------------------------------------------------------------
 int _tmain(int argc, _TCHAR* argv[])
 {
+    int size = 3;
+    int* array = new int[size];
+
+    try
+    {
+        array[0] = 1;
+        array[1] = 2;
+        array[2] = 3;
+        increment(array, size);
+        for (int i = 0; i < size; i++) cout << array[i]; cout << endl;
+
+        array[0] = 9;
+        array[1] = 9;
+        array[2] = 9;
+        increment(array, size);
+        for (int i = 0; i < size; i++) cout << array[i]; cout << endl;
+    }
+    catch (exception) {}
+    delete[] array;
 
     return 0;
 }
