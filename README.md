@@ -1,7 +1,7 @@
 # Coding Interview Questions
 
 File                      | Category  | Notes
--------------------------------------------------------------------------------
+------------------------- | --------- | ---------------------------------------
 ancestor.cpp              | Tree      | Find first common ancestor of two nodes
 assignment.cpp            | Operator  | Add assignment operator to CMyString
 breathfirst.cpp           | Tree      | Breath-first traversal (iterative)
