@@ -1,5 +1,6 @@
-# Coding Interview Questions
+## Coding Interview Questions
 
+:------------------------ | :-------- | :--------------------------------------
 File                      | Category  | Notes
 ------------------------- | --------- | ---------------------------------------
 ancestor.cpp              | Tree      | Find first common ancestor of two nodes
