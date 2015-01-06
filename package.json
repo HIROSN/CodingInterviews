@@ -1,0 +1,29 @@
+{
+  "name": "CodingInterviews",
+  "version": "1.0.0",
+  "description": "A collection of coding interview problems.",
+  "scripts": {
+    "test": "node_modules/grunt-cli/bin/grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HIROSN/CodingInterviews.git"
+  },
+  "author": "hirosn@live.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HIROSN/CodingInterviews/issues"
+  },
+  "homepage": "https://github.com/HIROSN/CodingInterviews",
+  "devDependencies": {
+    "async": "^0.9.0",
+    "chai": "^1.10.0",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-simple-mocha": "^0.4.0",
+    "grunt-traceur-simple": "^0.9.7"
+  }
+}
