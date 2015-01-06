@@ -1,4 +1,4 @@
-// {"category": "Algorithm", "notes": "Count number of 2’s between 0 and n"}
+// {"category": "Algorithm", "notes": "Count number of 2's between 0 and n"}
 
 #include <SDKDDKVer.h>
 #include <stdio.h>
@@ -10,7 +10,7 @@ using namespace std;
 
 //------------------------------------------------------------------------------
 //
-//  Write a method to count the number of 2’s between 0 and n.
+//  Write a method to count the number of 2's between 0 and n.
 //
 //------------------------------------------------------------------------------
 

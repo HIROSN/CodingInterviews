@@ -41,7 +41,7 @@ File | Category | Notes
 [mergesort.cpp](src/mergesort.cpp) | Sort | Mergesort
 [mergesort2.cpp](src/mergesort2.cpp) | Sort | Mergesort (n/2 additional space)
 [numbertostring.cpp](src/numbertostring.cpp) | Other | Print English phrase describes integer
-[numof2sinrange.cpp](src/numof2sinrange.cpp) | Algorithm | Count number of 2�s between 0 and n
+[numof2sinrange.cpp](src/numof2sinrange.cpp) | Algorithm | Count number of 2's between 0 and n
 [palindrome.cpp](src/palindrome.cpp) | Algorithm | Check if a number is palindrome
 [palindrome2.cpp](src/palindrome2.cpp) | Algorithm | Check if a linked list is palindrome
 [postorder.cpp](src/postorder.cpp) | Tree | Post-order traversal (iterative)
