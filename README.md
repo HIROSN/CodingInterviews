@@ -34,6 +34,7 @@ File | Category | Notes
 [kthtotail.cpp](src/kthtotail.cpp) | List | Find K-th node from tail of list
 [largestdistance.cpp](src/largestdistance.cpp) | Algorithm | Find largest distance in integer array
 [maintainmedian.cpp](src/maintainmedian.cpp) | Algorithm | Maintain median value in stream
+[majoritiesinarrays.cpp](src/majoritiesinarrays.cpp) | Algorithm | Find majority element in array
 [makefile.cpp](src/makefile.cpp) | Other | Process makefile
 [makefile2.cpp](src/makefile2.cpp) | Other | Process makefile
 [makefile3.cpp](src/makefile3.cpp) | Other | Process makefile
