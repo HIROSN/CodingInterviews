@@ -139,7 +139,17 @@ int _tmain(
                 cout << "Majority element: " << majorityElement;
             }
 
-            cout << " (Expected: " << tests[i].majorityElement;
+            cout << " (Expected: ";
+
+            if (tests[i].exceptionExpected)
+            {
+                cout << "exception";
+            }
+            else
+            {
+                cout << tests[i].majorityElement;
+            }
+
             cout << ")" << endl;
         }
     }
