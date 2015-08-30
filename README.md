@@ -41,6 +41,7 @@ File | Category | Notes
 [maxareainhistogram.cpp](src/maxareainhistogram.cpp) | Algorithm | Find largest rectangle in histogram
 [mergesort.cpp](src/mergesort.cpp) | Sort | Mergesort
 [mergesort2.cpp](src/mergesort2.cpp) | Sort | Mergesort (n/2 additional space)
+[newanddelete.cpp](src/newanddelete.cpp) | C++11 | new and delete
 [numbertostring.cpp](src/numbertostring.cpp) | Other | Print English phrase describes integer
 [numof2sinrange.cpp](src/numof2sinrange.cpp) | Algorithm | Count number of 2's between 0 and n
 [palindrome.cpp](src/palindrome.cpp) | Algorithm | Check if a number is palindrome
