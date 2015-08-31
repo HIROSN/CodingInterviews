@@ -32,6 +32,7 @@ File | Category | Notes
 [isbst.cpp](src/isbst.cpp) | Tree | Check if binary search tree
 [isnumeric.cpp](src/isnumeric.cpp) | String | Check if string stands for number
 [kthtotail.cpp](src/kthtotail.cpp) | List | Find K-th node from tail of list
+[lambdas.cpp](src/lambdas.cpp) | C++11 | Lambda expressions
 [largestdistance.cpp](src/largestdistance.cpp) | Algorithm | Find largest distance in integer array
 [maintainmedian.cpp](src/maintainmedian.cpp) | Algorithm | Maintain median value in stream
 [majoritiesinarrays.cpp](src/majoritiesinarrays.cpp) | Algorithm | Find majority element in array
