@@ -78,4 +78,5 @@ File | Category | Notes
 [tailtohead.cpp](src/tailtohead.cpp) | List | Print a list from tail to head
 [treeconstruct1.cpp](src/treeconstruct1.cpp) | Tree | Reconstruct from pre&in-order lists
 [treetraversal3.cpp](src/treetraversal3.cpp) | Tree | Breath first zig-zag order iteration
+[uniqueptrdeleter.cpp](src/uniqueptrdeleter.cpp) | C++11 | unique_ptr deleter
 [wordtransform.cpp](src/wordtransform.cpp) | Algorithm | Transform one word into another
