@@ -19,7 +19,7 @@ class text
     char* m_text = nullptr;
 
 public:
-    text() : text(nullptr) {}
+    text() = default;
 
     text(const text&) = delete;
     text& operator=(const text&) = delete;
