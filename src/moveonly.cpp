@@ -93,13 +93,13 @@ int _tmain(int argc, _TCHAR* argv[])
     textVector.push_back(text("R-value"));
     textVector.push_back(move(lValue));
 
-    cout << "'" << textVector[0] << "'" << endl;
-    cout << "'" << textVector[1] << "'" << endl;
+    cout << R"(")" << textVector[0] << R"(")" << endl;
+    cout << R"(")" << textVector[1] << R"(")" << endl;
 
     text moved = move(textVector[0]);
-    cout << "'" << moved << "'" << endl;
-    cout << "'" << textVector[0] << "'" << endl;
-    cout << "'" << textVector[1] << "'" << endl;
+    cout << R"(")" << moved << R"(")" << endl;
+    cout << R"(")" << textVector[0] << R"(")" << endl;
+    cout << R"(")" << textVector[1] << R"(")" << endl;
 
     lValue = text("hello") + text(", world");
     cout << lValue << endl;
