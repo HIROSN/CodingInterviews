@@ -78,6 +78,7 @@ File | Category | Notes
 [subsets.cpp](src/subsets.cpp) | Array | Return all subsets of a set
 [suffixtree.cpp](src/suffixtree.cpp) | Algorithm | Search string for smaller strings
 [tailtohead.cpp](src/tailtohead.cpp) | List | Print a list from tail to head
+[tls.cpp](src/tls.cpp) | C++11 | Thread local storage
 [treeconstruct1.cpp](src/treeconstruct1.cpp) | Tree | Reconstruct from pre&in-order lists
 [treetraversal3.cpp](src/treetraversal3.cpp) | Tree | Breath first zig-zag order iteration
 [uniqueptrdeleter.cpp](src/uniqueptrdeleter.cpp) | C++11 | unique_ptr deleter
