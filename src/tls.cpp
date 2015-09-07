@@ -28,7 +28,7 @@ Object& ThreadLocal()
 //------------------------------------------------------------------------------
 struct Storage
 {
-    DWORD id = 0;
+    DWORD id;
     string name;
 };
 
