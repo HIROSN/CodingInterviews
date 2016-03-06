@@ -49,7 +49,7 @@ describe('Update README.md', () => {
         });
       }, (err) => {
         fs.close(fd);
-        expect(err).to.equal(undefined);
+        expect(err).to.equal(null);
         done();
       });
     });
