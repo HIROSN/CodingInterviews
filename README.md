@@ -11,8 +11,10 @@
 
 File | Category | Notes
 :--- | :------- | :----
+[abstractclass.cpp](src/abstractclass.cpp) | H-1B | What is an abstract class
 [ancestor.cpp](src/ancestor.cpp) | Tree | Find first common ancestor of two nodes
 [assignment.cpp](src/assignment.cpp) | Operator | Add assignment operator to CMyString
+[balancedbst.cpp](src/balancedbst.cpp) | H-1B | Binary Search Tree is balanced
 [breathfirst.cpp](src/breathfirst.cpp) | Tree | Breath-first traversal (iterative)
 [breathfirst2.cpp](src/breathfirst2.cpp) | Tree | Breath-first traversal (using a queue)
 [champagnetower.cpp](src/champagnetower.cpp) | Algorithm | Champagne pyramid distribution puzzle
