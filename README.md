@@ -66,6 +66,7 @@ File | Category | Notes
 [scheduler.cpp](src/scheduler.cpp) | Win32 | Schedule three threads
 [searchselection1.cpp](src/searchselection1.cpp) | Algorithm | Find one integer from large array
 [selectionrank.cpp](src/selectionrank.cpp) | Algorithm | Find N-th smallest (Selection rank)
+[singleton.cpp](src/singleton.cpp) | C++11 | Thread-safe singleton
 [sortlist.cpp](src/sortlist.cpp) | List | Sort a list
 [stackwith2qs.cpp](src/stackwith2qs.cpp) | Stack | Stack with two queues
 [strcomp2.cpp](src/strcomp2.cpp) | String | Add numbers represented by string
