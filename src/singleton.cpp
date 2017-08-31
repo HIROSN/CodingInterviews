@@ -42,18 +42,27 @@ CSingleton& CSingleton::GetInstance()
 //------------------------------------------------------------------------------
 int _tmain(int argc, _TCHAR* argv[])
 {
-    HANDLE thread = CreateThread(nullptr, 0, [](LPVOID) -> DWORD
-    {
-        cout << "GetInstance: " << &CSingleton::GetInstance() << endl;
-        return ERROR_SUCCESS;
-    }, nullptr, 0, nullptr);
+    CSingleton* workerInstance = nullptr;
+    DWORD workerThreadId = 0;
 
-    cout << "GetInstance: " << &CSingleton::GetInstance() << endl;
-    WaitForSingleObject(thread, INFINITE);
+    HANDLE thread = CreateThread(nullptr, 0, [](LPVOID pWorkerInstance) -> DWORD
+    {
+        *static_cast<LPVOID*>(pWorkerInstance) = &CSingleton::GetInstance();
+        return ERROR_SUCCESS;
+    }, &workerInstance, 0, &workerThreadId);
+
+    CSingleton* primaryInstance = &CSingleton::GetInstance();
+    DWORD primaryThreadId = GetCurrentThreadId();
 
     if (thread != NULL)
     {
+        WaitForSingleObject(thread, INFINITE);
         CloseHandle(thread);
     }
+
+    cout << "GetInstance: " << workerInstance << " (tid: " << workerThreadId << ")" << endl;
+    cout << "GetInstance: " << primaryInstance << " (tid: " << primaryThreadId << ")" << endl;
+    cout << (workerInstance == primaryInstance ? "PASS" : "FAIL") << endl;
+
     return 0;
 }
