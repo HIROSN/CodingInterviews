@@ -15,8 +15,8 @@ File | Category | Notes
 [ancestor.cpp](src/ancestor.cpp) | Tree | Find first common ancestor of two nodes
 [assignment.cpp](src/assignment.cpp) | Operator | Add assignment operator to CMyString
 [balancedbst.cpp](src/balancedbst.cpp) | H-1B | Binary Search Tree is balanced
-[breathfirst.cpp](src/breathfirst.cpp) | Tree | Breath-first traversal (iterative)
-[breathfirst2.cpp](src/breathfirst2.cpp) | Tree | Breath-first traversal (using a queue)
+[breadthfirst.cpp](src/breadthfirst.cpp) | Tree | Breadth-first traversal (iterative)
+[breadthfirst2.cpp](src/breadthfirst2.cpp) | Tree | Breadth-first traversal (using a queue)
 [champagnetower.cpp](src/champagnetower.cpp) | Algorithm | Champagne pyramid distribution puzzle
 [diagonal.cpp](src/diagonal.cpp) | Matrix | Find a number in sorted matrix
 [diameter.cpp](src/diameter.cpp) | Tree | Diameter of a tree
@@ -83,6 +83,6 @@ File | Category | Notes
 [tailtohead.cpp](src/tailtohead.cpp) | List | Print a list from tail to head
 [tls.cpp](src/tls.cpp) | C++11 | Thread local storage
 [treeconstruct1.cpp](src/treeconstruct1.cpp) | Tree | Reconstruct from pre&in-order lists
-[treetraversal3.cpp](src/treetraversal3.cpp) | Tree | Breath first zig-zag order iteration
+[treetraversal3.cpp](src/treetraversal3.cpp) | Tree | Breadth first zig-zag order iteration
 [uniqueptrdeleter.cpp](src/uniqueptrdeleter.cpp) | C++11 | unique_ptr deleter
 [wordtransform.cpp](src/wordtransform.cpp) | Algorithm | Transform one word into another

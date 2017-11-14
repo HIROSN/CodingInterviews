@@ -1,17 +1,16 @@
-// {"category": "Tree", "notes": "Breath-first traversal (using a queue)"}
+// {"category": "Tree", "notes": "Breadth-first traversal (iterative)"}
 
 #include <SDKDDKVer.h>
 #include <stdio.h>
 #include <tchar.h>
 #include <iostream>
 #include <memory>
-#include <queue>
 using namespace std;
 
 
 //------------------------------------------------------------------------------
 //
-//  Breath-first binary tree traversal
+//  Breadth-first binary tree traversal
 //
 //            [10]
 //           /    \
@@ -25,7 +24,7 @@ using namespace std;
 //                          /
 //                       [22]
 //
-//  Breath-first traversal sequence: 10, 4, 16, 2, 8, 12, 18, 6, 14, 20, 24, 22
+//  Breadth-first traversal sequence: 10, 4, 16, 2, 8, 12, 18, 6, 14, 20, 24, 22
 //
 //------------------------------------------------------------------------------
 template<class Object>
@@ -38,6 +37,7 @@ public:
 
     ~BinaryTreeNode();
     void Add(const Object& object);
+    BinaryTreeNode<Object>* GetFirst(int* pLevel = nullptr);
 
     Object m_object;
     BinaryTreeNode<Object>* m_pLeft;
@@ -50,34 +50,75 @@ public:
 //  Implementation
 //
 //------------------------------------------------------------------------------
-    void PrintBreathFirst();
+    BinaryTreeNode<Object>* GetNext();
+
+private:
+    BinaryTreeNode<Object>* GetNextPreOrder(int* pLevel);
 };
 
 
 template<class Object>
-void BinaryTreeNode<Object>::PrintBreathFirst()
+BinaryTreeNode<Object>* BinaryTreeNode<Object>::GetNext()
 {
-    queue<BinaryTreeNode<Object>*> queue;
-    queue.push(this);
+    BinaryTreeNode<Object>* pNext = this;
+    int level = 0;
 
-    while (!queue.empty())
+    do {
+        pNext = pNext->GetNextPreOrder(&level);
+    } while (level != 0 && pNext != nullptr);
+
+    if (nullptr == pNext)
     {
-        BinaryTreeNode<Object>* pNode = queue.front();
-        queue.pop();
-        cout << pNode->m_object << " ";
+        level = 0;
+        pNext = GetFirst(&level);
 
-        if (pNode->m_pLeft != nullptr)
-        {
-            queue.push(pNode->m_pLeft);
-        }
-
-        if (pNode->m_pRight != nullptr)
-        {
-            queue.push(pNode->m_pRight);
-        }
+        do {
+            pNext = pNext->GetNextPreOrder(&level);
+        } while (level != 1 && pNext != nullptr);
     }
 
-    cout << endl;
+    return pNext;
+}
+
+
+template<class Object>
+BinaryTreeNode<Object>* BinaryTreeNode<Object>::GetNextPreOrder(
+    int* pLevel)
+{
+    if (nullptr == pLevel)
+    {
+        return nullptr;
+    }
+
+    if (m_pLeft != nullptr)
+    {
+        ++*pLevel;
+        return m_pLeft;
+    }
+
+    if (m_pRight != nullptr)
+    {
+        ++*pLevel;
+        return m_pRight;
+    }
+
+    BinaryTreeNode<Object>* pCurrent = this;
+    BinaryTreeNode<Object>* pParent = pCurrent->m_pParent;
+
+    while (pParent != nullptr && (
+        nullptr == pParent->m_pRight || pCurrent == pParent->m_pRight))
+    {
+        --*pLevel;
+        pCurrent = pParent;
+        pParent = pCurrent->m_pParent;
+    }
+
+    if (pParent != nullptr)
+    {
+        return pParent->m_pRight;
+    }
+
+    return nullptr;
 }
 
 
@@ -139,6 +180,25 @@ void BinaryTreeNode<Object>::Add(const Object& object)
 }
 
 
+template<class Object>
+BinaryTreeNode<Object>* BinaryTreeNode<Object>::GetFirst(int* pLevel)
+{
+    BinaryTreeNode<Object>* pFirst = this;
+
+    while (pFirst->m_pParent != nullptr)
+    {
+        if (pLevel != nullptr)
+        {
+            --*pLevel;
+        }
+
+        pFirst = pFirst->m_pParent;
+    }
+
+    return pFirst;
+}
+
+
 int _tmain(int argc, _TCHAR* argv[])
 {
     BinaryTreeNode<int> root(10);
@@ -153,6 +213,14 @@ int _tmain(int argc, _TCHAR* argv[])
     root.Add(20);
     root.Add(24);
     root.Add(22);
-    root.PrintBreathFirst();
+    BinaryTreeNode<int>* pNode = root.GetFirst();
+
+    while (pNode != nullptr)
+    {
+        cout << pNode->m_object << " ";
+        pNode = pNode->GetNext();
+    }
+
+    cout << endl;
     return 0;
 }

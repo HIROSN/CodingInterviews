@@ -2,9 +2,7 @@
 
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-traceur-simple');
   grunt.loadNpmTasks('grunt-simple-mocha');
 
   grunt.initConfig({
@@ -19,10 +17,6 @@ module.exports = function(grunt) {
       }
     },
 
-    clean: {
-      src: ['build/']
-    },
-
     copy: {
       readme: {
         cwd: 'test/',
@@ -32,29 +26,14 @@ module.exports = function(grunt) {
       }
     },
 
-    traceur: {
-      options: {
-        includeRuntime: true,
-        traceurOptions: '--experimental'
-      },
-
-      build: {
-        files: {
-          'build/all_tests.js': ['test/*.js']
-        }
-      }
-    },
-
     simplemocha: {
-      src: ['build/**/*.js']
+      src: ['test/**/*.js']
     }
   });
 
   grunt.registerTask('default', [
     'jshint',
-    'clean',
     'copy',
-    'traceur',
     'simplemocha'
   ]);
 };

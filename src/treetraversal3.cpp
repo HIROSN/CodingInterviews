@@ -1,4 +1,4 @@
-// {"category": "Tree", "notes": "Breath first zig-zag order iteration"}
+// {"category": "Tree", "notes": "Breadth first zig-zag order iteration"}
 
 #include <SDKDDKVer.h>
 #include <stdio.h>
@@ -10,7 +10,7 @@ using namespace std;
 
 //------------------------------------------------------------------------------
 //
-//  Print a tree in zig-zag order. Zig-zag order is a breath first iteration
+//  Print a tree in zig-zag order. Zig-zag order is a breadth first iteration
 //  where each successive level is printed in the reverse direction of the
 //  previous.
 //
